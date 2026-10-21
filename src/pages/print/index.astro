@@ -1,0 +1,8 @@
+---
+// Print view for the default locale: /print/ (unprefixed, no "/en/" segment).
+// See src/pages/print/[lang].astro for why the default locale isn't routed through it.
+import { defaultLocale } from '../../data';
+import PrintPage from '../../components/pdf/PrintPage.astro';
+---
+
+<PrintPage locale={defaultLocale} />

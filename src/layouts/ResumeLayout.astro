@@ -82,6 +82,23 @@ const personSchema = {
 		<link rel="alternate icon" href={withBase('/favicon.ico')} sizes="32x32" />
 
 		<script type="application/ld+json" set:html={JSON.stringify(personSchema)} is:inline />
+
+		<script is:inline>
+			// The masthead's load-in animation (rule draw, portrait resolve) should play
+			// once per browsing session, not on every locale switch. Runs synchronously
+			// in <head> so the class is set before first paint, with no flash either way.
+			(function () {
+				try {
+					if (!sessionStorage.getItem('resume-intro-played')) {
+						document.documentElement.classList.add('intro');
+						sessionStorage.setItem('resume-intro-played', '1');
+					}
+				} catch (e) {
+					// Storage unavailable (private mode, blocked). Skip the animation rather
+					// than risk it replaying forever.
+				}
+			})();
+		</script>
 	</head>
 	<body>
 		<slot />

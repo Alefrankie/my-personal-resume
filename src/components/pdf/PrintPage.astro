@@ -1,0 +1,37 @@
+---
+// Full <html> document for one locale's print/PDF view. Used by both
+// src/pages/print/index.astro (English, unprefixed) and src/pages/print/[lang].astro
+// (es, pt) so the two routes share one rendering path.
+import { getResume } from '../../data';
+import type { Locale } from '../../data/types';
+import PrintStyles from './PrintStyles.astro';
+import ResumeDocument from './ResumeDocument.astro';
+import { printLocaleTag } from './locale';
+
+interface Props {
+	locale: Locale;
+}
+
+const { locale } = Astro.props;
+const resume = getResume(locale);
+---
+
+<!doctype html>
+<html lang={printLocaleTag[resume.locale]}>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="robots" content="noindex" />
+		<!-- Read by scripts/generate-pdf.mjs to discover built print pages and their
+		     locale: the default locale lives at /print/ with no locale segment, so the
+		     generator can't recover it from the URL alone. -->
+		<meta name="x-print-locale" content={resume.locale} />
+		<title>{resume.meta.title}</title>
+		<meta name="author" content={resume.name} />
+		<meta name="description" content={resume.meta.description} />
+		<PrintStyles />
+	</head>
+	<body>
+		<ResumeDocument resume={resume} />
+	</body>
+</html>

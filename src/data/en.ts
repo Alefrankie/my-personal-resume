@@ -7,7 +7,7 @@ export const en: Resume = {
 	meta: {
 		title: 'Alefrank J. Martínez | Senior Software Engineer, AI-Assisted Development',
 		description:
-			'Senior full-stack engineer (TypeScript, Node/NestJS, React) working agent-first: specs, architecture and review for AI-assisted development. Based in Portugal.',
+			'Senior full-stack TypeScript engineer (Node/NestJS, React) in Portugal. Writes the specs AI coding agents work from and reviews the code they produce.',
 	},
 	name: 'Alefrank J. Martínez',
 	headline: 'Senior Software Engineer · AI-Assisted Development',
@@ -15,7 +15,7 @@ export const en: Resume = {
 	location: 'Faro, Algarve, Portugal',
 	availability: 'Available for part-time or contract work (20 h/week, WET/CET hours). Open to full-time.',
 	summary:
-		"Senior software engineer with 6+ years building full-stack TypeScript systems. I have used AI in my daily work since GitHub Copilot launched, and since 2026 I work agent-first: I turn architecture and domain knowledge into specs and documentation that AI agents execute, then review every change for security, hexagonal (ports and adapters) boundaries and SOLID design. AI extends what I know; the engineering judgment stays mine.",
+		"Senior software engineer with 6+ years of full-stack TypeScript (Node/NestJS, React). I've used AI at work since GitHub Copilot came out. Since February 2026 most of my implementation is done by AI agents: I write the specs and project docs they work from, keep the design and the critical code for myself, and review every change before merge for security, hexagonal (ports and adapters) boundaries and SOLID.",
 	contact: [
 		{ kind: 'email', label: 'Email', text: 'alefrank.m@gmail.com', href: 'mailto:alefrank.m@gmail.com' },
 		{ kind: 'phone', label: 'WhatsApp', text: '+351 936 404 829', href: 'https://wa.me/351936404829' },
@@ -33,13 +33,13 @@ export const en: Resume = {
 			company: 'Stack IT',
 			start: '2023',
 			current: true,
-			summary: 'Senior engineer leading a team of 4 across 4 client engagements, all with extended contracts; since February 2026, leading the shift to agentic, spec-driven development.',
+			summary: 'I lead a team of 4 on 4 client projects, and every one of those clients has extended its contract. Since February 2026 I have been moving the team to spec-driven development with AI agents.',
 			highlights: [
-				'Moved delivery to agentic, spec-driven development: codebase specs, AGENTS.md and CLAUDE.md context, and reusable agent workflows.',
-				'Delegate about 90% of mechanical implementation work to AI agents; I own the design, the critical code and the final review.',
-				'Turned architecture rules, security practices and domain knowledge into documentation that AI agents follow, so the quality bar holds while less code is written by hand.',
-				'Supervise and review all AI-generated changes; enforce hexagonal architecture, security review and tests before merge.',
-				'Supervised and evaluated interns, ran Scrum and conducted technical interviews for the team.',
+				'Set up what the agents need: codebase specs, AGENTS.md and CLAUDE.md files, and agent workflows the team reuses.',
+				'AI agents now do about 90% of the mechanical implementation. I do the design, the critical code and the final review.',
+				'Wrote our architecture rules, security practices and domain knowledge into docs the agents follow, which keeps code quality where it was with less code written by hand.',
+				'Review all AI-generated code before merge and require tests, a security review and clean hexagonal boundaries.',
+				'Supervised and evaluated interns, ran Scrum and interviewed candidates for the team.',
 			],
 			stack: ['TypeScript', 'Node.js', 'NestJS', 'React', 'React Native', 'PostgreSQL', 'MySQL', 'AWS', 'Docker', 'Claude Code', 'GitHub Copilot'],
 		},
@@ -49,8 +49,8 @@ export const en: Resume = {
 			start: '2022',
 			highlights: [
 				'Designed and built back-end services for a telecom provider.',
-				'Worked with front-end developers on API contracts and integration.',
-				'Contributed to database design.',
+				'Worked out API contracts and integration with the front-end developers.',
+				'Helped design the database.',
 			],
 			stack: ['TypeScript', 'Angular', 'MySQL'],
 		},
@@ -59,8 +59,8 @@ export const en: Resume = {
 			company: 'Gobernación del Estado Falcón',
 			start: '2021',
 			highlights: [
-				'Built public-sector web applications from requirements gathered with stakeholders.',
-				'Ran code reviews and mentored junior developers.',
+				'Built web applications for the state government from requirements gathered with stakeholders.',
+				'Did code reviews and mentored junior developers.',
 			],
 			stack: ['TypeScript', 'React', 'Svelte', 'CakePHP', 'PostgreSQL'],
 		},
@@ -69,8 +69,8 @@ export const en: Resume = {
 			company: 'VJC Imports',
 			start: '2021',
 			highlights: [
-				'Led development of the company inventory and billing system.',
-				'Worked directly with the client to keep scope aligned and deliver on schedule.',
+				"Led development of the company's inventory and billing system.",
+				'Dealt directly with the client on scope and delivery dates.',
 			],
 			stack: ['TypeScript', 'Svelte', 'React', 'Next.js', 'MongoDB'],
 		},
@@ -79,8 +79,8 @@ export const en: Resume = {
 			company: 'Alcaldía del Municipio Miranda',
 			start: '2020',
 			highlights: [
-				'Maintained and optimized municipal web applications.',
-				'Gathered end-user feedback and ran quality assurance testing.',
+				"Maintained and optimized the municipality's web applications.",
+				'Collected feedback from end users and did QA testing.',
 			],
 			stack: ['CakePHP', 'JavaScript', 'PostgreSQL'],
 		},
@@ -88,7 +88,7 @@ export const en: Resume = {
 	projects: [],
 	skills: [
 		{ label: 'AI-assisted development', items: ['Claude Code', 'GitHub Copilot', 'Spec-driven development', 'Agent context (AGENTS.md, CLAUDE.md)', 'AI code review'] },
-		{ label: 'Languages', items: ['TypeScript', 'JavaScript', 'Kotlin'] },
+		{ label: 'Languages', items: ['TypeScript', 'JavaScript'] },
 		{ label: 'Back end', items: ['Node.js', 'NestJS', 'Express', 'CakePHP'] },
 		{ label: 'Front end', items: ['React', 'Angular', 'Svelte', 'Next.js'] },
 		{ label: 'Mobile', items: ['React Native', 'Kotlin'] },
@@ -103,7 +103,7 @@ export const en: Resume = {
 	],
 	languages: [
 		{ name: 'Spanish', level: 'Native' },
-		{ name: 'English', level: 'B1 (CEFR)', note: 'Daily written work in English: specs, documentation, pull requests.' },
+		{ name: 'English', level: 'B1 (CEFR)', note: 'I write in English every day: specs, documentation and pull requests.' },
 		{ name: 'Portuguese', level: 'Basic' },
 	],
 	ui: {

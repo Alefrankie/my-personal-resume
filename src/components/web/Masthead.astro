@@ -10,8 +10,16 @@ interface Props {
 
 const { resume } = Astro.props;
 
-// Keep a middot separator bound to the words before it so it never opens a line.
-const bindSeparators = (text: string) => text.replace(/ · /g, ' · ');
+const NBSP = ' ';
+
+// Bind a middot separator to the words before it, and the final two words to
+// each other, so neither a separator nor a lone last word opens a new line.
+const preventWidows = (text: string) => {
+	const bound = text.split(' · ').join(`${NBSP}· `);
+	const words = bound.split(' ');
+	if (words.length < 2) return bound;
+	return `${words.slice(0, -2).join(' ')} ${words.slice(-2).join(NBSP)}`.trim();
+};
 ---
 
 <header class="masthead">
@@ -23,16 +31,8 @@ const bindSeparators = (text: string) => text.replace(/ · /g, ' · ');
 	<div class="masthead__main">
 		<div class="masthead__identity">
 			<h1 class="masthead__name">{resume.name}</h1>
-			<p class="masthead__headline">{bindSeparators(resume.headline)}</p>
-			<p class="masthead__tagline">{bindSeparators(resume.tagline)}</p>
-
-			<p class="facts">
-				<span class="facts__place">{resume.location}</span>
-				<span class="facts__sep" aria-hidden="true">·</span>
-				<span class="facts__avail"><span class="facts__dot" aria-hidden="true"></span>{resume.availability}</span>
-			</p>
-
-			<ContactList contact={resume.contact} label={resume.ui.contact} />
+			<p class="masthead__headline">{preventWidows(resume.headline)}</p>
+			<p class="masthead__tagline">{preventWidows(resume.tagline)}</p>
 		</div>
 
 		<figure class="masthead__figure">
@@ -46,6 +46,29 @@ const bindSeparators = (text: string) => text.replace(/ · /g, ' · ');
 				fetchpriority="high"
 			/>
 		</figure>
+
+		<div class="masthead__meta">
+			<p class="facts">
+				<span class="facts__place">{resume.location}</span>
+				<span class="facts__sep" aria-hidden="true">·</span>
+				<span class="facts__avail"><span class="facts__dot" aria-hidden="true"></span>{resume.availability}</span>
+			</p>
+
+			{
+				resume.languages.length > 0 && (
+					<ul class="langs" aria-label={resume.ui.languages}>
+						{resume.languages.map((language) => (
+							<li class="langs__item">
+								<span class="langs__name">{language.name}</span>
+								<span class="langs__level">{language.level}</span>
+							</li>
+						))}
+					</ul>
+				)
+			}
+
+			<ContactList contact={resume.contact} label={resume.ui.contact} />
+		</div>
 	</div>
 
 	<div class="masthead__rule" aria-hidden="true"></div>
@@ -66,30 +89,27 @@ const bindSeparators = (text: string) => text.replace(/ · /g, ' · ');
 		margin-bottom: clamp(1.75rem, 4vw, 3rem);
 	}
 
+	/* Mobile order is DOM order: name, headline, tagline, portrait, then the facts.
+	   The name leads; the portrait still sits near the top. */
 	.masthead__main {
 		display: flex;
 		flex-direction: column;
-		gap: 1.5rem;
+		gap: 1.25rem;
 	}
 
 	.masthead__figure {
-		order: -1;
 		width: max-content;
 		align-self: start;
 		overflow: hidden;
-		background: var(--paper);
+		background: var(--photo-surface);
 		isolation: isolate;
 	}
 
 	.masthead__photo {
-		width: 104px;
-		height: 126px;
+		width: 112px;
+		height: 136px;
 		object-fit: cover;
 		object-position: 50% 14%;
-		/* The source is a white-background studio shot carrying a faint blue vector
-		   motif. The warm duotone clips that motif to white, then multiply melts the
-		   white into the paper instead of boxing the portrait in. Dark mode skips the
-		   blend and keeps the portrait as a dimmed print. */
 		filter: var(--photo-filter);
 		mix-blend-mode: var(--photo-blend);
 		-webkit-mask-image: var(--photo-mask);
@@ -97,7 +117,6 @@ const bindSeparators = (text: string) => text.replace(/ · /g, ' · ');
 		/* Zoom past the vector motif at the source's left and right edges. */
 		transform: scale(1.28);
 		transform-origin: 50% 24%;
-		animation: photo-in 900ms var(--ease-out) both;
 	}
 
 	.masthead__name {
@@ -127,16 +146,16 @@ const bindSeparators = (text: string) => text.replace(/ · /g, ' · ');
 		font-size: 0.9375rem;
 		line-height: 1.5;
 		color: var(--ink-3);
-		max-width: 46ch;
+		max-width: 40ch;
+		text-wrap: balance;
 	}
 
 	.facts {
-		margin-top: 1.5rem;
 		font-family: var(--font-sans);
 		font-size: var(--step-meta);
 		line-height: 1.55;
 		color: var(--ink-2);
-		max-width: 62ch;
+		max-width: 56ch;
 	}
 
 	.facts__place {
@@ -160,12 +179,53 @@ const bindSeparators = (text: string) => text.replace(/ · /g, ' · ');
 		vertical-align: middle;
 	}
 
+	.langs {
+		display: flex;
+		flex-wrap: wrap;
+		margin-top: 0.4375rem;
+		font-family: var(--font-sans);
+		font-size: var(--step-meta);
+		line-height: 1.55;
+	}
+
+	.langs__item + .langs__item::before {
+		content: '·';
+		color: var(--rule-strong);
+		padding-inline: 0.375rem;
+	}
+
+	.langs__name {
+		font-weight: 600;
+		color: var(--ink-2);
+	}
+
+	.langs__level {
+		color: var(--ink-3);
+	}
+
+	.masthead__meta {
+		margin-top: 0.25rem;
+	}
+
+	.masthead__meta :global(.contact) {
+		margin-top: 0.625rem;
+	}
+
 	.masthead__rule {
 		height: 2px;
 		margin-top: clamp(1.75rem, 3vw, 2.25rem);
 		background: var(--accent);
 		transform-origin: left center;
+	}
+
+	/* One authored moment, and only on the first page of a session: the rule draws
+	   and the portrait resolves. Switching locale afterwards does not replay it. */
+	:global(html.intro) .masthead__rule {
 		animation: rule-in 820ms var(--ease-out) both;
+	}
+
+	:global(html.intro) .masthead__photo {
+		animation: photo-in 900ms var(--ease-out) both;
 	}
 
 	@keyframes rule-in {
@@ -188,14 +248,24 @@ const bindSeparators = (text: string) => text.replace(/ · /g, ' · ');
 		.masthead__main {
 			display: grid;
 			grid-template-columns: minmax(0, 1fr) auto;
-			gap: 2rem clamp(2rem, 4vw, 3.5rem);
+			gap: 1.5rem clamp(2rem, 4vw, 3.5rem);
 			align-items: start;
 		}
 
-		.masthead__figure {
-			order: 0;
-			grid-column: 2;
+		.masthead__identity {
+			grid-column: 1;
 			grid-row: 1;
+		}
+
+		.masthead__meta {
+			grid-column: 1;
+			grid-row: 2;
+			margin-top: 0;
+		}
+
+		.masthead__figure {
+			grid-column: 2;
+			grid-row: 1 / span 2;
 			margin-top: 0.375rem;
 		}
 
@@ -213,9 +283,15 @@ const bindSeparators = (text: string) => text.replace(/ · /g, ' · ');
 	}
 
 	@media print {
+		.masthead__figure {
+			background: #fff;
+		}
+
 		.masthead__photo {
 			filter: grayscale(1) contrast(1.04);
 			mix-blend-mode: normal;
+			-webkit-mask-image: none;
+			mask-image: none;
 			animation: none;
 		}
 

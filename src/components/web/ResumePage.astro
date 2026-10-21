@@ -81,23 +81,9 @@ const updatedLong = new Intl.DateTimeFormat(localeTag[locale], { dateStyle: 'lon
 				}
 			</ul>
 		</Section>
-
-		<Section id="languages" title={ui.languages}>
-			<ul class="entries">
-				{
-					resume.languages.map((language) => (
-						<li class="entry">
-							<h3 class="entry__title">
-								{language.name}
-								<span class="entry__level">{language.level}</span>
-							</h3>
-							{language.note && <p class="entry__note">{language.note}</p>}
-						</li>
-					))
-				}
-			</ul>
-		</Section>
 	</main>
+	<!-- Languages now live as a compact line in the masthead; the web page ends on
+	     Contact. The data and the PDF still carry the full language list with notes. -->
 
 	<footer class="footer">
 		<div class="footer__contact">
@@ -118,6 +104,12 @@ const updatedLong = new Intl.DateTimeFormat(localeTag[locale], { dateStyle: 'lon
 <style>
 	.page {
 		padding-bottom: clamp(2rem, 5vw, 4rem);
+	}
+
+	/* The masthead already closes on its own accent rule; the first section
+	   does not need a second one directly under it. */
+	.page > main > :global(section:first-of-type) {
+		border-top: none;
 	}
 
 	.jobs {

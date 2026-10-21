@@ -1,35 +1,19 @@
 ---
-// Print view, one page per locale: /print/en/, /print/es/, /print/pt/.
-// scripts/generate-pdf.mjs renders these with Chromium to produce the downloadable PDFs.
-// Plain dynamic route on purpose: it must build with or without Astro i18n routing configured.
-import { getResume, locales } from '../../data';
+// Print view for the non-default locales: /print/es/, /print/pt/.
+// English lives at src/pages/print/index.astro (unprefixed), not here: Astro's i18n
+// middleware (prefixDefaultLocale: false) strip-redirects any request whose last path
+// segment equals the default locale code, so a literal /print/en/ 404s in dev (it only
+// "worked" at build time because the static dev server never runs that redirect check).
+// Keeping the default locale unprefixed mirrors how the site's own routes already work.
+import { defaultLocale, locales } from '../../data';
 import type { Locale } from '../../data/types';
-import PrintStyles from '../../components/pdf/PrintStyles.astro';
-import ResumeDocument from '../../components/pdf/ResumeDocument.astro';
+import PrintPage from '../../components/pdf/PrintPage.astro';
 
 export function getStaticPaths() {
-	return locales.map((lang) => ({ params: { lang } }));
+	return locales.filter((lang) => lang !== defaultLocale).map((lang) => ({ params: { lang } }));
 }
 
 const lang = Astro.params.lang as Locale;
-const resume = getResume(lang);
-
-/** BCP 47 tag for the document. The Portuguese content is European Portuguese. */
-const htmlLang: Record<Locale, string> = { en: 'en', es: 'es', pt: 'pt-PT' };
 ---
 
-<!doctype html>
-<html lang={htmlLang[resume.locale]}>
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<meta name="robots" content="noindex" />
-		<title>{resume.meta.title}</title>
-		<meta name="author" content={resume.name} />
-		<meta name="description" content={resume.meta.description} />
-		<PrintStyles />
-	</head>
-	<body>
-		<ResumeDocument resume={resume} />
-	</body>
-</html>
+<PrintPage locale={lang} />

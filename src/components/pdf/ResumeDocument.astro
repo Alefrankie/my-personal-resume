@@ -7,12 +7,19 @@ import ProjectsSection from './ProjectsSection.astro';
 import SkillsSection from './SkillsSection.astro';
 import EducationSection from './EducationSection.astro';
 import LanguagesSection from './LanguagesSection.astro';
+import { printLocaleTag } from './locale';
 
 interface Props {
 	resume: Resume;
 }
 
 const { resume } = Astro.props;
+
+// Same recipe as the web footer (ResumePage.astro): long localized date, noon UTC so the
+// date-only ISO string doesn't roll back a day in a timezone behind UTC.
+const updatedLong = new Intl.DateTimeFormat(printLocaleTag[resume.locale], { dateStyle: 'long' }).format(
+	new Date(`${resume.updatedAt}T12:00:00Z`)
+);
 ---
 
 <ResumeHeader resume={resume} />
@@ -31,4 +38,4 @@ const { resume } = Astro.props;
 	<LanguagesSection resume={resume} />
 </main>
 
-<footer class="updated">{resume.ui.updated} {resume.updatedAt}</footer>
+<footer class="updated">{resume.ui.updated} <time datetime={resume.updatedAt}>{updatedLong}</time></footer>

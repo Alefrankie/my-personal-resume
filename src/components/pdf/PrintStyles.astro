@@ -19,7 +19,6 @@
 	}
 
 	:root {
-		--paper: #fbf9f5;
 		--ink: #191814;
 		--ink-2: #45423a;
 		--ink-3: #6b675c;
@@ -43,7 +42,10 @@
 
 	body {
 		margin: 0;
-		background: var(--paper);
+		/* White, not the web page's warm paper tint: a tinted body background prints as a
+		   tinted box inside the page margins, leaving a visibly empty tinted strip under a
+		   partly-filled last page. Ink and the brick accent carry the brand instead. */
+		background: #ffffff;
 		color: var(--ink);
 		font-family: var(--sans);
 		font-size: 1rem;
@@ -171,8 +173,16 @@
 		border-top: 0.75pt solid var(--rule);
 	}
 
+	/* Real in-flow element, not a positioned ::before: a generated-content pseudo-element
+	   anchored with position:absolute has no positioned ancestor here, so it resolves
+	   against the page's initial containing block. Chromium's tagged-PDF export then
+	   places it outside the normal reading order, which pushed every section heading to
+	   the end of the page in text-extraction order. A real sibling node in normal flow
+	   can't do that: it's extracted exactly where it's painted. */
 	section > h2 {
-		position: relative;
+		display: flex;
+		align-items: center;
+		gap: 6pt;
 		font-family: var(--sans);
 		font-size: 0.8rem;
 		font-weight: 700;
@@ -185,12 +195,8 @@
 		page-break-after: avoid;
 	}
 
-	/* Short accent tick above each section title, matching the web page's label mark. */
-	section > h2::before {
-		content: '';
-		position: absolute;
-		top: 0;
-		left: 0;
+	.section-tick {
+		flex: none;
 		width: 11pt;
 		height: 1.4pt;
 		background: var(--accent);
@@ -265,22 +271,23 @@
 		margin-top: 4pt;
 	}
 
+	/* Same real-element rule as the section tick: no ::before, no position:absolute.
+	   The tick is a real first child, laid out in flow by flex, so it can't be pulled out
+	   of reading order by the tagged-PDF export. */
 	.bullets li {
-		position: relative;
-		padding-left: 10pt;
+		display: flex;
+		align-items: flex-start;
+		gap: 6pt;
 		margin-bottom: 2pt;
 		color: var(--ink-2);
 		line-height: 1.42;
 	}
 
-	/* A short hairline tick instead of a round bullet, matching the web highlights list. */
-	.bullets li::before {
-		content: '';
-		position: absolute;
-		left: 0;
-		top: 0.62em;
+	.bullets .tick {
+		flex: none;
 		width: 6pt;
 		height: 0.9pt;
+		margin-top: 0.62em;
 		background: var(--rule-strong);
 	}
 

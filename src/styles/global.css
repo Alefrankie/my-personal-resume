@@ -24,14 +24,20 @@
 	--accent-wash: #f3e5e0;
 	--on-accent: #fffaf8;
 	--selection: #f0ddd7;
-	/* Warm duotone, lifted so the source's pale vector motif clips to white. */
+	/* Warm duotone, lifted so the source's pale vector motif clips to white.
+	   The portrait then multiplies onto --photo-surface: on light paper that makes
+	   it a cut-out; in dark it lands on a muted print card instead. */
 	--photo-filter: grayscale(1) sepia(0.14) brightness(1.13) contrast(1.17);
 	--photo-blend: multiply;
+	--photo-surface: var(--paper);
 	--photo-mask: linear-gradient(to bottom, #000 68%, transparent 100%);
 
 	--gutter: clamp(1.25rem, 5vw, 3.5rem);
 	--page: 68rem;
-	--measure: 68ch;
+	/* `ch` is the width of "0", which runs well ahead of average lowercase, so
+	   these land near 70 rendered characters rather than the number of ch units. */
+	--measure: 54ch;
+	--measure-serif: 42ch;
 	--label-col: 11rem;
 
 	--step-name: clamp(2.25rem, 1.4rem + 3.6vw, 3rem);
@@ -64,8 +70,9 @@
 		--accent-wash: #2b1d18;
 		--on-accent: #16100d;
 		--selection: #40261e;
-		--photo-filter: grayscale(1) sepia(0.14) brightness(1.13) contrast(1.17) brightness(0.84);
-		--photo-blend: normal;
+		--photo-filter: grayscale(1) sepia(0.14) brightness(1.13) contrast(1.17);
+		--photo-blend: multiply;
+		--photo-surface: #c6bfb0;
 		--photo-mask: none;
 
 		color-scheme: dark;
@@ -85,8 +92,9 @@
 	--accent-wash: #2b1d18;
 	--on-accent: #16100d;
 	--selection: #40261e;
-	--photo-filter: grayscale(1) sepia(0.14) brightness(1.13) contrast(1.17) brightness(0.84);
-	--photo-blend: normal;
+	--photo-filter: grayscale(1) sepia(0.14) brightness(1.13) contrast(1.17);
+	--photo-blend: multiply;
+	--photo-surface: #c6bfb0;
 	--photo-mask: none;
 
 	color-scheme: dark;
@@ -233,7 +241,7 @@ a:hover {
 	font-size: var(--step-lede);
 	line-height: 1.6;
 	color: var(--ink-2);
-	max-width: var(--measure);
+	max-width: var(--measure-serif);
 	text-wrap: pretty;
 }
 

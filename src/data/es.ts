@@ -7,7 +7,7 @@ export const es: Resume = {
 	meta: {
 		title: 'Alefrank J. Martínez | Senior Software Engineer, desarrollo asistido por IA',
 		description:
-			'Ingeniero full-stack sénior (TypeScript, Node/NestJS, React) con enfoque agent-first: especificaciones, arquitectura y revisión para el desarrollo asistido por IA. Residente en Portugal.',
+			'Ingeniero full-stack sénior en TypeScript (Node/NestJS, React), en Portugal. Escribe las especificaciones con las que trabajan los agentes de IA y revisa el código que producen.',
 	},
 	name: 'Alefrank J. Martínez',
 	headline: 'Senior Software Engineer · Desarrollo asistido por IA',
@@ -16,7 +16,7 @@ export const es: Resume = {
 	availability:
 		'Disponible para jornada parcial o colaboración por contrato (20 h/semana, horario WET/CET). Abierto a jornada completa.',
 	summary:
-		'Ingeniero de software sénior con más de 6 años construyendo sistemas full-stack en TypeScript. Uso IA en mi trabajo diario desde que apareció GitHub Copilot y, desde 2026, trabajo agent-first: convierto la arquitectura y el conocimiento del dominio en especificaciones y documentación que los agentes de IA ejecutan, y después reviso cada cambio en seguridad, límites de la arquitectura hexagonal (puertos y adaptadores) y diseño SOLID. La IA amplía lo que sé; el criterio de ingeniería sigue siendo mío.',
+		'Ingeniero de software sénior con más de 6 años en full-stack TypeScript (Node/NestJS, React). Uso IA en el trabajo desde que salió GitHub Copilot. Desde febrero de 2026, la mayor parte de la implementación la hacen agentes de IA: yo escribo las especificaciones y la documentación con las que trabajan, me quedo con el diseño y el código crítico, y reviso cada cambio antes del merge en seguridad, límites de la arquitectura hexagonal (puertos y adaptadores) y SOLID.',
 	contact: [
 		{ kind: 'email', label: 'Email', text: 'alefrank.m@gmail.com', href: 'mailto:alefrank.m@gmail.com' },
 		{ kind: 'phone', label: 'WhatsApp', text: '+351 936 404 829', href: 'https://wa.me/351936404829' },
@@ -35,13 +35,13 @@ export const es: Resume = {
 			start: '2023',
 			current: true,
 			summary:
-				'Ingeniero sénior que lidera un equipo de 4 personas en 4 proyectos de cliente, todos con contrato renovado; desde febrero de 2026, al frente del cambio hacia un desarrollo agéntico guiado por especificaciones.',
+				'Lidero un equipo de 4 personas en 4 proyectos de cliente, y todos esos clientes han renovado su contrato. Desde febrero de 2026 estoy pasando al equipo a un desarrollo guiado por especificaciones con agentes de IA.',
 			highlights: [
-				'Llevé la entrega a un desarrollo agéntico guiado por especificaciones: specs de la base de código, contexto en AGENTS.md y CLAUDE.md, y flujos de trabajo de agentes reutilizables.',
-				'Delego alrededor del 90 % del trabajo de implementación mecánica en agentes de IA; el diseño, el código crítico y la revisión final siguen siendo míos.',
-				'Convertí reglas de arquitectura, prácticas de seguridad y conocimiento del dominio en documentación que los agentes de IA siguen, de modo que el listón de calidad se mantiene aunque se escriba menos código a mano.',
-				'Superviso y reviso todos los cambios generados por IA; exijo arquitectura hexagonal, revisión de seguridad y pruebas antes del merge.',
-				'Supervisé y evalué a becarios, facilité Scrum y realicé entrevistas técnicas para el equipo.',
+				'Preparé lo que necesitan los agentes: specs del código, archivos AGENTS.md y CLAUDE.md, y flujos de agentes que el equipo reutiliza.',
+				'Los agentes de IA hacen ahora cerca del 90 % de la implementación mecánica. El diseño, el código crítico y la revisión final los hago yo.',
+				'Puse por escrito nuestras reglas de arquitectura, prácticas de seguridad y conocimiento del dominio para que los agentes las sigan; así la calidad del código se mantiene aunque se escriba menos a mano.',
+				'Reviso todo el código generado por IA antes del merge y exijo pruebas, revisión de seguridad y respeto a la arquitectura hexagonal.',
+				'Supervisé y evalué a becarios, llevé Scrum e hice entrevistas técnicas a candidatos para el equipo.',
 			],
 			stack: ['TypeScript', 'Node.js', 'NestJS', 'React', 'React Native', 'PostgreSQL', 'MySQL', 'AWS', 'Docker', 'Claude Code', 'GitHub Copilot'],
 		},
@@ -50,9 +50,9 @@ export const es: Resume = {
 			company: 'Maraveca Telecomunicaciones',
 			start: '2022',
 			highlights: [
-				'Diseñé y construí servicios de back end para un proveedor de telecomunicaciones.',
-				'Trabajé con los desarrolladores de front end en los contratos de API y su integración.',
-				'Participé en el diseño de la base de datos.',
+				'Diseñé y desarrollé servicios de back end para un proveedor de telecomunicaciones.',
+				'Definí con los desarrolladores de front end los contratos de API y la integración.',
+				'Ayudé a diseñar la base de datos.',
 			],
 			stack: ['TypeScript', 'Angular', 'MySQL'],
 		},
@@ -61,8 +61,8 @@ export const es: Resume = {
 			company: 'Gobernación del Estado Falcón',
 			start: '2021',
 			highlights: [
-				'Desarrollé aplicaciones web del sector público a partir de requisitos levantados con las partes interesadas.',
-				'Realicé revisiones de código y mentoricé a desarrolladores junior.',
+				'Desarrollé aplicaciones web para la gobernación a partir de requisitos levantados con las partes interesadas.',
+				'Hice revisiones de código y fui mentor de desarrolladores junior.',
 			],
 			stack: ['TypeScript', 'React', 'Svelte', 'CakePHP', 'PostgreSQL'],
 		},
@@ -72,7 +72,7 @@ export const es: Resume = {
 			start: '2021',
 			highlights: [
 				'Lideré el desarrollo del sistema de inventario y facturación de la empresa.',
-				'Trabajé directamente con el cliente para mantener el alcance alineado y entregar a tiempo.',
+				'Traté directamente con el cliente el alcance y las fechas de entrega.',
 			],
 			stack: ['TypeScript', 'Svelte', 'React', 'Next.js', 'MongoDB'],
 		},
@@ -81,8 +81,8 @@ export const es: Resume = {
 			company: 'Alcaldía del Municipio Miranda',
 			start: '2020',
 			highlights: [
-				'Mantuve y optimicé aplicaciones web municipales.',
-				'Recogí comentarios de los usuarios finales y realicé pruebas de aseguramiento de la calidad.',
+				'Mantuve y optimicé las aplicaciones web de la alcaldía.',
+				'Recogí la opinión de los usuarios finales e hice pruebas de QA.',
 			],
 			stack: ['CakePHP', 'JavaScript', 'PostgreSQL'],
 		},
@@ -93,7 +93,7 @@ export const es: Resume = {
 			label: 'Desarrollo asistido por IA',
 			items: ['Claude Code', 'GitHub Copilot', 'Desarrollo guiado por especificaciones', 'Contexto para agentes (AGENTS.md, CLAUDE.md)', 'Revisión de código con IA'],
 		},
-		{ label: 'Lenguajes', items: ['TypeScript', 'JavaScript', 'Kotlin'] },
+		{ label: 'Lenguajes', items: ['TypeScript', 'JavaScript'] },
 		{ label: 'Back end', items: ['Node.js', 'NestJS', 'Express', 'CakePHP'] },
 		{ label: 'Front end', items: ['React', 'Angular', 'Svelte', 'Next.js'] },
 		{ label: 'Móvil', items: ['React Native', 'Kotlin'] },
@@ -114,7 +114,7 @@ export const es: Resume = {
 	],
 	languages: [
 		{ name: 'Español', level: 'Nativo' },
-		{ name: 'Inglés', level: 'B1 (MCER)', note: 'Trabajo escrito a diario en inglés: especificaciones, documentación y pull requests.' },
+		{ name: 'Inglés', level: 'B1 (MCER)', note: 'Escribo en inglés a diario: especificaciones, documentación y pull requests.' },
 		{ name: 'Portugués', level: 'Básico' },
 	],
 	ui: {

@@ -1,14 +1,15 @@
 #!/usr/bin/env node
 // Generates the downloadable resume PDFs from the built print pages.
 //
-// Pipeline: serve dist/ over a throwaway node:http server -> open /print/{locale}/
-// in Chromium (Playwright) -> page.pdf() -> write the same bytes to dist/pdf/ and
-// public/pdf/ (the public copy is what `astro dev` serves and what gets committed).
+// Pipeline: serve dist/ over a throwaway node:http server -> discover each built print
+// page (/print/ for the default locale, /print/{locale}/ for the rest) -> open it in
+// Chromium (Playwright) -> page.pdf() -> write the same bytes to dist/pdf/ and public/pdf/
+// (the public copy is what `astro dev` serves and what gets committed).
 //
 // Run after `astro build`. Requires dist/ to exist.
 
 import { createReadStream } from 'node:fs';
-import { mkdir, readdir, stat, writeFile } from 'node:fs/promises';
+import { mkdir, readdir, readFile, stat, writeFile } from 'node:fs/promises';
 import { createServer } from 'node:http';
 import { extname, join, normalize, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -128,13 +129,39 @@ function hasTitleMetadata(bytes) {
 	return Buffer.from(bytes).toString('latin1').includes('/Title');
 }
 
-/** Locales to render, taken from the routes `astro build` actually emitted. */
-async function builtLocales() {
-	const entries = await readdir(PRINT_DIR, { withFileTypes: true });
-	return entries
-		.filter((entry) => entry.isDirectory())
-		.map((entry) => entry.name)
-		.sort();
+/**
+ * Print pages to render, taken from the routes `astro build` actually emitted, not from
+ * a hardcoded locale list: the default locale lives at dist/print/index.html (no locale
+ * segment in the URL, so /print/en/ doesn't 404 under Astro's i18n routing in dev), and
+ * every other locale gets its own dist/print/{locale}/index.html. Each page embeds
+ * <meta name="x-print-locale"> so its locale survives even though the URL doesn't carry
+ * it for the default case.
+ */
+async function discoverPrintPages() {
+	const pages = [];
+
+	async function consider(urlPath, dir) {
+		const file = join(dir, 'index.html');
+		if (!(await isFile(file))) return;
+		const html = await readFile(file, 'utf8');
+		const match = html.match(/<meta\s+name="x-print-locale"\s+content="([^"]*)"/);
+		if (!match) return;
+		pages.push({ locale: match[1], urlPath });
+	}
+
+	await consider('/print/', PRINT_DIR);
+
+	let entries;
+	try {
+		entries = await readdir(PRINT_DIR, { withFileTypes: true });
+	} catch {
+		entries = [];
+	}
+	for (const entry of entries.filter((entry) => entry.isDirectory()).sort((a, b) => a.name.localeCompare(b.name))) {
+		await consider(`/print/${entry.name}/`, join(PRINT_DIR, entry.name));
+	}
+
+	return pages;
 }
 
 async function main() {
@@ -142,14 +169,14 @@ async function main() {
 		fail(`dist/ is missing or incomplete (no ${join('dist', 'index.html')}). Run "npm run build:site" first.`);
 	}
 
-	let locales;
+	let pages;
 	try {
-		locales = await builtLocales();
+		pages = await discoverPrintPages();
 	} catch {
-		locales = [];
+		pages = [];
 	}
-	if (locales.length === 0) {
-		fail('No print routes found in dist/print/. Check src/pages/print/[lang].astro and rebuild.');
+	if (pages.length === 0) {
+		fail('No print routes found in dist/print/. Check src/pages/print/index.astro, src/pages/print/[lang].astro and rebuild.');
 	}
 
 	for (const dir of OUT_DIRS) await mkdir(dir, { recursive: true });
@@ -160,8 +187,8 @@ async function main() {
 
 	try {
 		const context = await browser.newContext();
-		for (const locale of locales) {
-			const url = `${origin}${BASE_PATH}/print/${locale}/`;
+		for (const { locale, urlPath } of pages) {
+			const url = `${origin}${BASE_PATH}${urlPath}`;
 			const page = await context.newPage();
 			const response = await page.goto(url, { waitUntil: 'networkidle' });
 			if (!response || !response.ok()) {

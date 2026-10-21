@@ -30,7 +30,10 @@ function dateRange(job: Job, present: string): string {
 				{job.highlights.length > 0 ? (
 					<ul class="bullets">
 						{job.highlights.map((highlight) => (
-							<li>{highlight}</li>
+							<li>
+								<span class="tick" aria-hidden="true"></span>
+								<span>{highlight}</span>
+							</li>
 						))}
 					</ul>
 				) : null}
