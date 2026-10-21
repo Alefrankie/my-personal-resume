@@ -33,10 +33,9 @@
 	--photo-mask: linear-gradient(to bottom, #000 68%, transparent 100%);
 
 	--gutter: clamp(1.25rem, 5vw, 3.5rem);
-	/* Without a side label column soaking up width, a wide page left prose and
-	   job entries stranded in a narrow strip with a large dead margin on the
-	   right. Sized to the content instead of the viewport. */
-	--page: 50rem;
+	/* Sized so the two-column body (Experience + a Skills/Education rail) fits
+	   without squeezing either column once that layout kicks in at 68rem. */
+	--page: 66rem;
 	/* `ch` is the width of "0", which runs well ahead of average lowercase, so
 	   these land near 70 rendered characters rather than the number of ch units. */
 	--measure: 54ch;
