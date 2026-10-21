@@ -1,0 +1,38 @@
+---
+interface Props {
+	items: string[];
+	label?: string;
+}
+
+const { items, label } = Astro.props;
+---
+
+{
+	items.length > 0 && (
+		<ul class="stack" aria-label={label}>
+			{items.map((item) => (
+				<li class="stack__item">{item}</li>
+			))}
+		</ul>
+	)
+}
+
+<style>
+	.stack {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.375rem;
+	}
+
+	.stack__item {
+		font-family: var(--font-sans);
+		font-size: 0.75rem;
+		font-weight: 500;
+		letter-spacing: 0.015em;
+		line-height: 1.4;
+		color: var(--ink-2);
+		background: var(--paper-sunk);
+		padding: 0.25rem 0.5rem;
+		border-radius: 3px;
+	}
+</style>

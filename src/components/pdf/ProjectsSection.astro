@@ -1,0 +1,29 @@
+---
+import type { Resume } from '../../data/types';
+import Section from './Section.astro';
+
+interface Props {
+	resume: Resume;
+}
+
+const { resume } = Astro.props;
+---
+
+<Section title={resume.ui.projects}>
+	{
+		resume.projects.map((project) => (
+			<article class="entry">
+				<div class="entry-head">
+					<h3>{project.name}</h3>
+					{project.url ? (
+						<span class="entry-meta">
+							<a href={project.url}>{project.url.replace(/^https?:\/\//, '')}</a>
+						</span>
+					) : null}
+				</div>
+				<p class="entry-summary">{project.description}</p>
+				{project.stack.length > 0 ? <p class="stack">{project.stack.join(', ')}</p> : null}
+			</article>
+		))
+	}
+</Section>

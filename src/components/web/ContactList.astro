@@ -1,0 +1,108 @@
+---
+import type { ContactLink } from '../../data';
+
+interface Props {
+	contact: ContactLink[];
+	label: string;
+	/** Show the address or handle under the label. Used in the closing contact block. */
+	detail?: boolean;
+}
+
+const { contact, label, detail = false } = Astro.props;
+
+// Two GitHub profiles share the label "GitHub", so disambiguate repeated labels
+// with the handle instead of rendering the same word twice.
+const labelCount = new Map<string, number>();
+for (const link of contact) labelCount.set(link.label, (labelCount.get(link.label) ?? 0) + 1);
+
+const items = contact.map((link) => {
+	const repeated = (labelCount.get(link.label) ?? 0) > 1;
+	const handle = link.text.replace(/\/+$/, '').split('/').pop() ?? link.text;
+	return { ...link, handle: repeated ? handle : null };
+});
+
+const external = (link: ContactLink) => !link.href.startsWith('mailto:');
+---
+
+<ul class:list={['contact', detail && 'contact--detail']} aria-label={label}>
+	{
+		items.map((link) => (
+			<li>
+				<a class="contact__link" href={link.href} rel={external(link) ? 'me noopener' : undefined}>
+					<span class="contact__label">
+						{link.label}
+						{link.handle && <span class="contact__handle">{link.handle}</span>}
+					</span>
+					{detail && <span class="contact__text">{link.text}</span>}
+				</a>
+			</li>
+		))
+	}
+</ul>
+
+<style>
+	.contact {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.25rem 0.5rem;
+	}
+
+	.contact__link {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		gap: 0.0625rem;
+		min-height: 44px;
+		padding: 0.375rem 0.625rem;
+		margin-left: -0.625rem;
+		border-radius: 4px;
+		color: var(--ink);
+		text-decoration: none;
+		transition: background-color 160ms var(--ease-out), color 160ms var(--ease-out);
+	}
+
+	.contact__link:hover {
+		background: var(--paper-sunk);
+		color: var(--accent-ink);
+	}
+
+	.contact__label {
+		font-family: var(--font-sans);
+		font-size: var(--step-meta);
+		font-weight: 600;
+		letter-spacing: 0.01em;
+		line-height: 1.3;
+		text-decoration: underline;
+		text-decoration-thickness: 1px;
+		text-underline-offset: 0.22em;
+		text-decoration-color: color-mix(in srgb, var(--accent-ink) 40%, transparent);
+	}
+
+	.contact__link:hover .contact__label {
+		text-decoration-color: var(--accent-ink);
+	}
+
+	.contact__handle {
+		font-weight: 400;
+		color: var(--ink-3);
+	}
+
+	.contact__handle::before {
+		content: ' ';
+	}
+
+	.contact__text {
+		font-family: var(--font-sans);
+		font-size: 0.8125rem;
+		line-height: 1.35;
+		color: var(--ink-3);
+		text-decoration: none;
+		word-break: break-word;
+	}
+
+	.contact--detail {
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 0.125rem;
+	}
+</style>

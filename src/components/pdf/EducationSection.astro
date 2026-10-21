@@ -1,0 +1,23 @@
+---
+import type { Resume } from '../../data/types';
+import Section from './Section.astro';
+
+interface Props {
+	resume: Resume;
+}
+
+const { resume } = Astro.props;
+---
+
+<Section title={resume.ui.education}>
+	<ul class="lines">
+		{
+			resume.education.map((item) => (
+				<li>
+					<span class="label">{item.title}</span>, {item.institution}
+					{item.note ? <span class="note"> ({item.note})</span> : null}
+				</li>
+			))
+		}
+	</ul>
+</Section>

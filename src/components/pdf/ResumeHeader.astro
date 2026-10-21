@@ -1,0 +1,30 @@
+---
+import type { Resume } from '../../data/types';
+
+interface Props {
+	resume: Resume;
+}
+
+const { resume } = Astro.props;
+---
+
+<header class="masthead">
+	<h1>{resume.name}</h1>
+	<p class="headline">{resume.headline}</p>
+	<p class="tagline">{resume.tagline}</p>
+	<p class="facts">
+		<span>{resume.location}</span>
+		<span class="sep">&middot;</span>
+		<span>{resume.availability}</span>
+	</p>
+	<p class="facts facts-contact">
+		{
+			resume.contact.map((link, index) => (
+				<Fragment>
+					{index > 0 ? <span class="sep">&middot;</span> : null}
+					<a href={link.href}>{link.text}</a>
+				</Fragment>
+			))
+		}
+	</p>
+</header>

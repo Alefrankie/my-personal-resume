@@ -1,0 +1,23 @@
+---
+import type { Resume } from '../../data/types';
+import Section from './Section.astro';
+
+interface Props {
+	resume: Resume;
+}
+
+const { resume } = Astro.props;
+---
+
+<Section title={resume.ui.languages}>
+	<ul class="lines">
+		{
+			resume.languages.map((language) => (
+				<li>
+					<span class="label">{language.name}:</span> {language.level}
+					{language.note ? <span class="note"> {language.note}</span> : null}
+				</li>
+			))
+		}
+	</ul>
+</Section>

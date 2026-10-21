@@ -1,0 +1,89 @@
+---
+import '../styles/global.css';
+import { getResume, locales, withBase, type Locale } from '../data';
+import { localeHreflang, localeOg, localePath, localeTag } from '../components/web/locale';
+
+interface Props {
+	locale: Locale;
+}
+
+const { locale } = Astro.props;
+const resume = getResume(locale);
+
+const canonical = new URL(localePath(locale), Astro.site);
+const ogImage = new URL(withBase('/og.png'), Astro.site);
+
+const email = resume.contact.find((c) => c.kind === 'email');
+const sameAs = resume.contact
+	.filter((c) => c.kind === 'linkedin' || c.kind === 'github' || c.kind === 'web')
+	.map((c) => c.href);
+
+const personSchema = {
+	'@context': 'https://schema.org',
+	'@type': 'Person',
+	name: resume.name,
+	jobTitle: resume.headline,
+	description: resume.summary,
+	url: canonical.href,
+	image: new URL(withBase('/photo.jpg'), Astro.site).href,
+	address: { '@type': 'PostalAddress', addressCountry: resume.location },
+	...(email ? { email: email.href.replace(/^mailto:/, '') } : {}),
+	...(sameAs.length ? { sameAs } : {}),
+	knowsLanguage: resume.languages.map((l) => l.name),
+};
+---
+
+<!doctype html>
+<html lang={localeTag[locale]}>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+		<title>{resume.meta.title}</title>
+		<meta name="description" content={resume.meta.description} />
+		<meta name="author" content={resume.name} />
+		<meta name="generator" content={Astro.generator} />
+
+		<link rel="canonical" href={canonical.href} />
+		{
+			locales.map((alt) => (
+				<link rel="alternate" hreflang={localeHreflang[alt]} href={new URL(localePath(alt), Astro.site).href} />
+			))
+		}
+		<link rel="alternate" hreflang="x-default" href={new URL(localePath('en'), Astro.site).href} />
+
+		<meta property="og:type" content="profile" />
+		<meta property="og:title" content={resume.meta.title} />
+		<meta property="og:description" content={resume.meta.description} />
+		<meta property="og:url" content={canonical.href} />
+		<meta property="og:site_name" content={resume.name} />
+		<meta property="og:image" content={ogImage.href} />
+		<meta property="og:image:width" content="1200" />
+		<meta property="og:image:height" content="630" />
+		<meta property="og:image:alt" content={`${resume.name}. ${resume.headline}`} />
+		<meta property="og:locale" content={localeOg[locale]} />
+		{
+			locales
+				.filter((alt) => alt !== locale)
+				.map((alt) => <meta property="og:locale:alternate" content={localeOg[alt]} />)
+		}
+		<meta property="profile:first_name" content="Alefrank" />
+		<meta property="profile:last_name" content="Martínez" />
+
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={resume.meta.title} />
+		<meta name="twitter:description" content={resume.meta.description} />
+		<meta name="twitter:image" content={ogImage.href} />
+		<meta name="twitter:image:alt" content={`${resume.name}. ${resume.headline}`} />
+
+		<meta name="theme-color" content="#fbf9f5" media="(prefers-color-scheme: light)" />
+		<meta name="theme-color" content="#14130f" media="(prefers-color-scheme: dark)" />
+
+		<link rel="icon" href={withBase('/favicon.svg')} type="image/svg+xml" />
+		<link rel="alternate icon" href={withBase('/favicon.ico')} sizes="32x32" />
+
+		<script type="application/ld+json" set:html={JSON.stringify(personSchema)} is:inline />
+	</head>
+	<body>
+		<slot />
+	</body>
+</html>

@@ -1,0 +1,227 @@
+---
+import { withBase, type Resume } from '../../data';
+import ContactList from './ContactList.astro';
+import DownloadPdf from './DownloadPdf.astro';
+import LanguageSwitch from './LanguageSwitch.astro';
+
+interface Props {
+	resume: Resume;
+}
+
+const { resume } = Astro.props;
+
+// Keep a middot separator bound to the words before it so it never opens a line.
+const bindSeparators = (text: string) => text.replace(/ · /g, ' · ');
+---
+
+<header class="masthead">
+	<div class="masthead__bar no-print">
+		<LanguageSwitch locale={resume.locale} label={resume.ui.languageSwitch} />
+		<DownloadPdf locale={resume.locale} label={resume.ui.downloadPdf} />
+	</div>
+
+	<div class="masthead__main">
+		<div class="masthead__identity">
+			<h1 class="masthead__name">{resume.name}</h1>
+			<p class="masthead__headline">{bindSeparators(resume.headline)}</p>
+			<p class="masthead__tagline">{bindSeparators(resume.tagline)}</p>
+
+			<p class="facts">
+				<span class="facts__place">{resume.location}</span>
+				<span class="facts__sep" aria-hidden="true">·</span>
+				<span class="facts__avail"><span class="facts__dot" aria-hidden="true"></span>{resume.availability}</span>
+			</p>
+
+			<ContactList contact={resume.contact} label={resume.ui.contact} />
+		</div>
+
+		<figure class="masthead__figure">
+			<img
+				class="masthead__photo"
+				src={withBase('/photo.jpg')}
+				alt={resume.ui.photoAlt}
+				width="940"
+				height="788"
+				decoding="async"
+				fetchpriority="high"
+			/>
+		</figure>
+	</div>
+
+	<div class="masthead__rule" aria-hidden="true"></div>
+</header>
+
+<style>
+	.masthead {
+		padding-block: 1rem clamp(1.75rem, 3vw, 2.5rem);
+	}
+
+	.masthead__bar {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: space-between;
+		gap: 0.75rem;
+		margin-left: -0.5rem;
+		margin-bottom: clamp(1.75rem, 4vw, 3rem);
+	}
+
+	.masthead__main {
+		display: flex;
+		flex-direction: column;
+		gap: 1.5rem;
+	}
+
+	.masthead__figure {
+		order: -1;
+		width: max-content;
+		align-self: start;
+		overflow: hidden;
+		background: var(--paper);
+		isolation: isolate;
+	}
+
+	.masthead__photo {
+		width: 104px;
+		height: 126px;
+		object-fit: cover;
+		object-position: 50% 14%;
+		/* The source is a white-background studio shot carrying a faint blue vector
+		   motif. The warm duotone clips that motif to white, then multiply melts the
+		   white into the paper instead of boxing the portrait in. Dark mode skips the
+		   blend and keeps the portrait as a dimmed print. */
+		filter: var(--photo-filter);
+		mix-blend-mode: var(--photo-blend);
+		-webkit-mask-image: var(--photo-mask);
+		mask-image: var(--photo-mask);
+		/* Zoom past the vector motif at the source's left and right edges. */
+		transform: scale(1.28);
+		transform-origin: 50% 24%;
+		animation: photo-in 900ms var(--ease-out) both;
+	}
+
+	.masthead__name {
+		font-family: var(--font-serif);
+		font-size: var(--step-name);
+		font-weight: 600;
+		line-height: 1.04;
+		letter-spacing: -0.025em;
+		text-wrap: balance;
+		color: var(--ink);
+	}
+
+	.masthead__headline {
+		margin-top: 0.625rem;
+		font-family: var(--font-sans);
+		font-size: var(--step-headline);
+		font-weight: 500;
+		line-height: 1.35;
+		letter-spacing: -0.005em;
+		color: var(--ink);
+		text-wrap: balance;
+	}
+
+	.masthead__tagline {
+		margin-top: 0.375rem;
+		font-family: var(--font-sans);
+		font-size: 0.9375rem;
+		line-height: 1.5;
+		color: var(--ink-3);
+		max-width: 46ch;
+	}
+
+	.facts {
+		margin-top: 1.5rem;
+		font-family: var(--font-sans);
+		font-size: var(--step-meta);
+		line-height: 1.55;
+		color: var(--ink-2);
+		max-width: 62ch;
+	}
+
+	.facts__place {
+		font-weight: 600;
+		color: var(--ink);
+	}
+
+	.facts__sep {
+		color: var(--rule-strong);
+		padding-inline: 0.375rem;
+	}
+
+	.facts__dot {
+		display: inline-block;
+		width: 0.4375rem;
+		height: 0.4375rem;
+		margin-right: 0.4375rem;
+		margin-bottom: 0.0625rem;
+		border-radius: 50%;
+		background: var(--accent);
+		vertical-align: middle;
+	}
+
+	.masthead__rule {
+		height: 2px;
+		margin-top: clamp(1.75rem, 3vw, 2.25rem);
+		background: var(--accent);
+		transform-origin: left center;
+		animation: rule-in 820ms var(--ease-out) both;
+	}
+
+	@keyframes rule-in {
+		from {
+			transform: scaleX(0);
+		}
+		to {
+			transform: scaleX(1);
+		}
+	}
+
+	@keyframes photo-in {
+		from {
+			opacity: 0;
+			filter: var(--photo-filter) blur(14px);
+		}
+	}
+
+	@media (min-width: 48rem) {
+		.masthead__main {
+			display: grid;
+			grid-template-columns: minmax(0, 1fr) auto;
+			gap: 2rem clamp(2rem, 4vw, 3.5rem);
+			align-items: start;
+		}
+
+		.masthead__figure {
+			order: 0;
+			grid-column: 2;
+			grid-row: 1;
+			margin-top: 0.375rem;
+		}
+
+		.masthead__photo {
+			width: 168px;
+			height: 206px;
+		}
+	}
+
+	@media (min-width: 60rem) {
+		.masthead__photo {
+			width: 196px;
+			height: 240px;
+		}
+	}
+
+	@media print {
+		.masthead__photo {
+			filter: grayscale(1) contrast(1.04);
+			mix-blend-mode: normal;
+			animation: none;
+		}
+
+		.masthead__rule {
+			animation: none;
+			background: #000;
+		}
+	}
+</style>

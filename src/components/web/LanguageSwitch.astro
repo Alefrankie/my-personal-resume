@@ -1,0 +1,68 @@
+---
+import { locales, type Locale } from '../../data';
+import { localeHreflang, localeName, localePath, localeShort, localeTag } from './locale';
+
+interface Props {
+	locale: Locale;
+	label: string;
+}
+
+const { locale, label } = Astro.props;
+---
+
+<nav class="lang no-print" aria-label={label}>
+	<ul class="lang__list">
+		{
+			locales.map((alt) => (
+				<li>
+					<a
+						class="lang__link"
+						href={localePath(alt)}
+						lang={localeTag[alt]}
+						hreflang={localeHreflang[alt]}
+						aria-current={alt === locale ? 'page' : undefined}
+					>
+						<span aria-hidden="true">{localeShort[alt]}</span>
+						<span class="sr-only">{localeName[alt]}</span>
+					</a>
+				</li>
+			))
+		}
+	</ul>
+</nav>
+
+<style>
+	.lang__list {
+		display: flex;
+		align-items: center;
+		gap: 0.125rem;
+	}
+
+	.lang__link {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		min-height: 44px;
+		min-width: 44px;
+		padding-inline: 0.5rem;
+		font-family: var(--font-sans);
+		font-size: var(--step-label);
+		font-weight: 600;
+		letter-spacing: 0.08em;
+		color: var(--ink-3);
+		text-decoration: none;
+		border-radius: 4px;
+		transition: color 160ms var(--ease-out), background-color 160ms var(--ease-out);
+	}
+
+	.lang__link:hover {
+		color: var(--ink);
+		background: var(--paper-sunk);
+	}
+
+	.lang__link[aria-current='page'] {
+		color: var(--ink);
+		background: var(--accent-wash);
+		box-shadow: inset 0 -2px 0 var(--accent);
+	}
+</style>

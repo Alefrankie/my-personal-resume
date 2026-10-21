@@ -1,0 +1,65 @@
+---
+import { pdfUrl, type Locale } from '../../data';
+
+interface Props {
+	locale: Locale;
+	label: string;
+	variant?: 'solid' | 'quiet';
+}
+
+const { locale, label, variant = 'solid' } = Astro.props;
+---
+
+<a class:list={['pdf', `pdf--${variant}`, 'no-print']} href={pdfUrl(locale)} download>
+	<svg class="pdf__icon" viewBox="0 0 16 16" width="16" height="16" fill="none" aria-hidden="true" focusable="false">
+		<path d="M8 2.5v8m0 0L4.75 7.25M8 10.5l3.25-3.25M2.5 13h11" stroke="currentColor" stroke-width="1.5"
+			stroke-linecap="round" stroke-linejoin="round"></path>
+	</svg>
+	<span>{label}</span>
+</a>
+
+<style>
+	.pdf {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
+		min-height: 44px;
+		padding: 0.5rem 1rem;
+		font-family: var(--font-sans);
+		font-size: var(--step-meta);
+		font-weight: 600;
+		letter-spacing: 0.01em;
+		text-decoration: none;
+		border-radius: 6px;
+		transition: background-color 160ms var(--ease-out), color 160ms var(--ease-out), border-color 160ms var(--ease-out);
+	}
+
+	.pdf__icon {
+		flex: none;
+		transition: transform 220ms var(--ease-out);
+	}
+
+	.pdf:hover .pdf__icon {
+		transform: translateY(2px);
+	}
+
+	.pdf--solid {
+		background: var(--ink);
+		color: var(--paper);
+	}
+
+	.pdf--solid:hover {
+		background: var(--accent);
+		color: var(--on-accent);
+	}
+
+	.pdf--quiet {
+		border: 1px solid var(--rule-strong);
+		color: var(--ink);
+	}
+
+	.pdf--quiet:hover {
+		border-color: var(--accent);
+		color: var(--accent-ink);
+	}
+</style>

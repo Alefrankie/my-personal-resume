@@ -1,0 +1,34 @@
+---
+import type { Resume } from '../../data/types';
+import ResumeHeader from './ResumeHeader.astro';
+import Section from './Section.astro';
+import ExperienceSection from './ExperienceSection.astro';
+import ProjectsSection from './ProjectsSection.astro';
+import SkillsSection from './SkillsSection.astro';
+import EducationSection from './EducationSection.astro';
+import LanguagesSection from './LanguagesSection.astro';
+
+interface Props {
+	resume: Resume;
+}
+
+const { resume } = Astro.props;
+---
+
+<ResumeHeader resume={resume} />
+
+<main>
+	<Section title={resume.ui.summary}>
+		<p class="summary">{resume.summary}</p>
+	</Section>
+
+	<ExperienceSection resume={resume} />
+
+	{resume.projects.length > 0 ? <ProjectsSection resume={resume} /> : null}
+
+	<SkillsSection resume={resume} />
+	<EducationSection resume={resume} />
+	<LanguagesSection resume={resume} />
+</main>
+
+<footer class="updated">{resume.ui.updated} {resume.updatedAt}</footer>

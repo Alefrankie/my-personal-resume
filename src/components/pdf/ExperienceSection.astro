@@ -1,0 +1,41 @@
+---
+import type { Job, Resume } from '../../data/types';
+import Section from './Section.astro';
+
+interface Props {
+	resume: Resume;
+}
+
+const { resume } = Astro.props;
+
+/** "2023 – Present" when ongoing, "2021 – 2022" when closed, "2021" when single. */
+function dateRange(job: Job, present: string): string {
+	const end = job.current ? present : job.end;
+	return end ? `${job.start} – ${end}` : job.start;
+}
+---
+
+<Section title={resume.ui.experience}>
+	{
+		resume.experience.map((job) => (
+			<article class="entry">
+				<div class="entry-head">
+					<h3>
+						{job.role}, <span class="company">{job.company}</span>
+						{job.location ? <span class="entry-place"> ({job.location})</span> : null}
+					</h3>
+					<span class="entry-meta">{dateRange(job, resume.ui.present)}</span>
+				</div>
+				{job.summary ? <p class="entry-summary">{job.summary}</p> : null}
+				{job.highlights.length > 0 ? (
+					<ul class="bullets">
+						{job.highlights.map((highlight) => (
+							<li>{highlight}</li>
+						))}
+					</ul>
+				) : null}
+				{job.stack.length > 0 ? <p class="stack">{job.stack.join(', ')}</p> : null}
+			</article>
+		))
+	}
+</Section>
