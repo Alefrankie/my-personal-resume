@@ -2,6 +2,8 @@
 dist/
 # generated PDFs (rebuilt by `npm run build` / `npm run pdf`)
 public/pdf/
+# impeccable live-server runtime files
+.impeccable/live/
 # generated types
 .astro/
 

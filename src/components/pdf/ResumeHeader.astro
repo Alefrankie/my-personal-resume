@@ -13,9 +13,9 @@ const { resume } = Astro.props;
 	<p class="headline">{resume.headline}</p>
 	<p class="tagline">{resume.tagline}</p>
 	<p class="facts">
-		<span>{resume.location}</span>
+		<span class="place">{resume.location}</span>
 		<span class="sep">&middot;</span>
-		<span>{resume.availability}</span>
+		<span><span class="dot" aria-hidden="true"></span>{resume.availability}</span>
 	</p>
 	<p class="facts facts-contact">
 		{
@@ -27,4 +27,5 @@ const { resume } = Astro.props;
 			))
 		}
 	</p>
+	<div class="masthead-rule" aria-hidden="true"></div>
 </header>
