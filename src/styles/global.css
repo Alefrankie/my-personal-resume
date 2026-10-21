@@ -38,10 +38,6 @@
 	   these land near 70 rendered characters rather than the number of ch units. */
 	--measure: 54ch;
 	--measure-serif: 42ch;
-	/* Sized to the widest translated section label ("Competencias"/"Competências",
-	   119px rendered) plus a small buffer, so the label-to-body gap stays tight
-	   and even instead of trailing off after short words like "Skills". */
-	--label-col: 8rem;
 	/* Caps a section's body column so a right-aligned element (a job's date)
 	   sits close to the text it pairs with, instead of stranded at the far
 	   edge of a wide grid track. */

@@ -17,9 +17,12 @@ const { id, title } = Astro.props;
 </section>
 
 <style>
+	/* Label stacks above the body at every width: a small accent dash, the
+	   label, then content, all sharing the same left edge. */
 	.section {
-		display: grid;
-		gap: 1.25rem 2.5rem;
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
 		padding-block: clamp(2.25rem, 4vw, 3.25rem);
 		border-top: 1px solid var(--rule);
 	}
@@ -43,35 +46,5 @@ const { id, title } = Astro.props;
 		width: 1.5rem;
 		height: 2px;
 		background: var(--accent);
-	}
-
-	@media (min-width: 60rem) {
-		.section {
-			grid-template-columns: var(--label-col) minmax(0, 1fr);
-			column-gap: 1.5rem;
-		}
-
-		.section__label {
-			grid-column: 1;
-			position: sticky;
-			top: 2rem;
-			align-self: start;
-		}
-
-		/* Right-aligned so every label sits flush against the gap, a fixed 1.5rem
-		   from the body column, instead of trailing off by however much shorter
-		   the word is than the fixed-width column. */
-		.section__title {
-			text-align: right;
-		}
-
-		.section__title::before {
-			left: auto;
-			right: 0;
-		}
-
-		.section__body {
-			grid-column: 2;
-		}
 	}
 </style>
