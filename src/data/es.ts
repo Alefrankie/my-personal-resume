@@ -37,11 +37,11 @@ export const es: Resume = {
 			summary:
 				'Lidero un equipo de 4 personas en 4 proyectos de cliente, y los 4 han renovado. Desde febrero de 2026 estoy pasando al equipo a un desarrollo guiado por especificaciones con agentes de IA.',
 			highlights: [
-				'Preparé lo que necesitan los agentes: specs del código, archivos AGENTS.md y CLAUDE.md, y flujos de agentes que el equipo reutiliza.',
-				'Los agentes de IA hacen ahora cerca del 90 % de la implementación mecánica. El diseño, el código crítico y la revisión final los hago yo.',
-				'Puse por escrito nuestras reglas de arquitectura, prácticas de seguridad y conocimiento del dominio para que los agentes las sigan; así la calidad del código se mantiene aunque se escriba menos a mano.',
-				'Reviso todo el código generado por IA antes del merge y exijo pruebas, revisión de seguridad y respeto a la arquitectura hexagonal.',
-				'Supervisé y evalué a becarios, llevé Scrum e hice entrevistas técnicas a candidatos para el equipo.',
+				'Construí la capa de contexto para agentes que usa el equipo: specs del código, archivos AGENTS.md y CLAUDE.md, y flujos de agentes reutilizables.',
+				'Delego cerca del 90 % de la implementación mecánica en agentes de IA, y me quedo con el diseño, el código crítico y la revisión final.',
+				'Codifiqué nuestras reglas de arquitectura, prácticas de seguridad y conocimiento del dominio en documentos que siguen los agentes, manteniendo la calidad del código mientras baja el código escrito a mano.',
+				'Bloqueo cada cambio generado por IA con revisión de código, pruebas, un paso de seguridad y verificación de límites hexagonales antes del merge.',
+				'Llevé Scrum para el equipo, supervisé y evalué a becarios, e hice entrevistas técnicas a candidatos.',
 			],
 			stack: ['TypeScript', 'Node.js', 'NestJS', 'React', 'React Native', 'PostgreSQL', 'MySQL', 'AWS', 'Docker', 'Claude Code', 'GitHub Copilot'],
 		},
@@ -51,8 +51,8 @@ export const es: Resume = {
 			start: '2022',
 			highlights: [
 				'Diseñé y desarrollé servicios de back end para un proveedor de telecomunicaciones.',
-				'Definí con los desarrolladores de front end los contratos de API y la integración.',
-				'Ayudé a diseñar la base de datos.',
+				'Definí los contratos de API con el equipo de front end e implementé la integración.',
+				'Contribuí al diseño de la base de datos.',
 			],
 			stack: ['TypeScript', 'Angular', 'MySQL'],
 		},
@@ -61,8 +61,8 @@ export const es: Resume = {
 			company: 'Gobernación del Estado Falcón',
 			start: '2021',
 			highlights: [
-				'Desarrollé aplicaciones web para la gobernación a partir de requisitos levantados con las partes interesadas.',
-				'Hice revisiones de código y fui mentor de desarrolladores junior.',
+				'Desarrollé aplicaciones web para la gobernación, levantando los requisitos directamente con las partes interesadas.',
+				'Realicé revisiones de código y fui mentor de desarrolladores junior.',
 			],
 			stack: ['TypeScript', 'React', 'Svelte', 'CakePHP', 'PostgreSQL'],
 		},
@@ -72,7 +72,7 @@ export const es: Resume = {
 			start: '2021',
 			highlights: [
 				'Lideré el desarrollo del sistema de inventario y facturación de la empresa.',
-				'Traté directamente con el cliente el alcance y las fechas de entrega.',
+				'Trabajé directamente con el cliente para gestionar el alcance y las fechas de entrega.',
 			],
 			stack: ['TypeScript', 'Svelte', 'React', 'Next.js', 'MongoDB'],
 		},
@@ -82,7 +82,7 @@ export const es: Resume = {
 			start: '2020',
 			highlights: [
 				'Mantuve y optimicé las aplicaciones web de la alcaldía.',
-				'Recogí la opinión de los usuarios finales e hice pruebas de QA.',
+				'Recopilé la opinión de los usuarios finales y ejecuté pruebas de QA.',
 			],
 			stack: ['CakePHP', 'JavaScript', 'PostgreSQL'],
 		},
