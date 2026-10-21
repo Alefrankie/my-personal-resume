@@ -37,9 +37,7 @@ export const en: Resume = {
 			highlights: [
 				'Built the agent context layer the team runs on: codebase specs, AGENTS.md and CLAUDE.md files, and reusable agent workflows.',
 				'Delegate about 90% of mechanical implementation to AI agents while owning system design, critical code paths and final review.',
-				'Codified our architecture rules, security practices and domain knowledge into docs AI agents follow, holding code quality steady while cutting hand-written code.',
 				'Gate every AI-generated change behind code review, tests, a security pass and hexagonal-boundary checks before merge.',
-				'Ran Scrum for the team, supervised and evaluated interns, and interviewed engineering candidates.',
 			],
 			stack: ['TypeScript', 'Node.js', 'NestJS', 'React', 'React Native', 'PostgreSQL', 'MySQL', 'AWS', 'Docker', 'Claude Code', 'GitHub Copilot'],
 		},
@@ -51,7 +49,6 @@ export const en: Resume = {
 				'Replaced client-side pagination that loaded all ~7,000 customer records before rendering (about 5 minutes per load) with server-side pagination, removing the multi-minute wait.',
 				'Migrated raw SQL queries open to injection to Sequelize ORM across the back end, closing that security gap.',
 				'Built a feature for fiber customers to check their connection speed in real time.',
-				'Defined API contracts with the front-end team and contributed to the database design.',
 			],
 			stack: ['TypeScript', 'Angular', 'MySQL', 'Sequelize'],
 		},
@@ -99,8 +96,6 @@ export const en: Resume = {
 	],
 	education: [
 		{ title: 'Systems Engineering', institution: 'National Experimental University of the Armed Forces (UNEFA)' },
-		{ title: 'Technician in Computer Maintenance and Repair', institution: 'Josefa Camejo Institute' },
-		{ title: 'Technician in Computerized Business Administration', institution: 'ATCE (Business Training Technical Academy)' },
 	],
 	languages: [
 		{ name: 'Spanish', level: 'Native' },

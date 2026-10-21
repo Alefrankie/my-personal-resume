@@ -39,9 +39,7 @@ export const es: Resume = {
 			highlights: [
 				'Construí la capa de contexto para agentes que usa el equipo: specs del código, archivos AGENTS.md y CLAUDE.md, y flujos de agentes reutilizables.',
 				'Delego cerca del 90 % de la implementación mecánica en agentes de IA, y me quedo con el diseño, el código crítico y la revisión final.',
-				'Codifiqué nuestras reglas de arquitectura, prácticas de seguridad y conocimiento del dominio en documentos que siguen los agentes, manteniendo la calidad del código mientras baja el código escrito a mano.',
 				'Bloqueo cada cambio generado por IA con revisión de código, pruebas, un paso de seguridad y verificación de límites hexagonales antes del merge.',
-				'Llevé Scrum para el equipo, supervisé y evalué a becarios, e hice entrevistas técnicas a candidatos.',
 			],
 			stack: ['TypeScript', 'Node.js', 'NestJS', 'React', 'React Native', 'PostgreSQL', 'MySQL', 'AWS', 'Docker', 'Claude Code', 'GitHub Copilot'],
 		},
@@ -53,7 +51,6 @@ export const es: Resume = {
 				'Sustituí la paginación visual que cargaba los cerca de 7.000 clientes antes de mostrarlos (unos 5 minutos por carga) por paginación en el servidor, eliminando esa espera.',
 				'Migré las consultas SQL crudas, expuestas a inyección, a Sequelize ORM en todo el back end, cerrando ese hueco de seguridad.',
 				'Construí una función para que los clientes de fibra óptica vieran la velocidad de su conexión en tiempo real.',
-				'Definí los contratos de API con el equipo de front end y contribuí al diseño de la base de datos.',
 			],
 			stack: ['TypeScript', 'Angular', 'MySQL', 'Sequelize'],
 		},
@@ -106,11 +103,6 @@ export const es: Resume = {
 		{
 			title: 'Ingeniería de Sistemas',
 			institution: 'Universidad Nacional Experimental Politécnica de la Fuerza Armada Nacional (UNEFA)',
-		},
-		{ title: 'Técnico en Mantenimiento y Reparación de Computadoras', institution: 'Instituto Josefa Camejo' },
-		{
-			title: 'Técnico en Administración de Empresas Computarizada',
-			institution: 'ATCE (Academia Técnica de Capacitación Empresarial)',
 		},
 	],
 	languages: [

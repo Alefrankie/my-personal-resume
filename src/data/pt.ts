@@ -39,9 +39,7 @@ export const pt: Resume = {
 			highlights: [
 				'Construí a camada de contexto para agentes que a equipa usa: specs do código, ficheiros AGENTS.md e CLAUDE.md, e fluxos de agentes reutilizáveis.',
 				'Delego cerca de 90 % da implementação mecânica em agentes de IA, ficando com o desenho, o código crítico e a revisão final.',
-				'Codifiquei as nossas regras de arquitetura, práticas de segurança e conhecimento do domínio em documentos que os agentes seguem, mantendo a qualidade do código enquanto baixa o código escrito à mão.',
 				'Bloqueio cada alteração gerada por IA com revisão de código, testes, uma verificação de segurança e checagem dos limites hexagonais antes do merge.',
-				'Conduzi o Scrum da equipa, supervisionei e avaliei estagiários, e fiz entrevistas técnicas a candidatos.',
 			],
 			stack: ['TypeScript', 'Node.js', 'NestJS', 'React', 'React Native', 'PostgreSQL', 'MySQL', 'AWS', 'Docker', 'Claude Code', 'GitHub Copilot'],
 		},
@@ -53,7 +51,6 @@ export const pt: Resume = {
 				'Substituí a paginação visual que carregava os cerca de 7.000 clientes antes de os mostrar (cerca de 5 minutos por carregamento) por paginação no servidor, eliminando essa espera.',
 				'Migrei as queries SQL em bruto, expostas a injeção, para Sequelize ORM em todo o back end, fechando essa lacuna de segurança.',
 				'Construí uma funcionalidade para os clientes de fibra ótica verem a velocidade da sua ligação em tempo real.',
-				'Defini os contratos de API com a equipa de front end e contribuí para o desenho da base de dados.',
 			],
 			stack: ['TypeScript', 'Angular', 'MySQL', 'Sequelize'],
 		},
@@ -106,11 +103,6 @@ export const pt: Resume = {
 		{
 			title: 'Engenharia de Sistemas',
 			institution: 'Universidad Nacional Experimental Politécnica de la Fuerza Armada Nacional (UNEFA)',
-		},
-		{ title: 'Técnico de Manutenção e Reparação de Computadores', institution: 'Instituto Josefa Camejo' },
-		{
-			title: 'Técnico de Gestão de Empresas Informatizada',
-			institution: 'ATCE (Academia Técnica de Capacitación Empresarial)',
 		},
 	],
 	languages: [
