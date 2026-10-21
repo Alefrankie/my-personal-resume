@@ -33,7 +33,10 @@
 	--photo-mask: linear-gradient(to bottom, #000 68%, transparent 100%);
 
 	--gutter: clamp(1.25rem, 5vw, 3.5rem);
-	--page: 68rem;
+	/* Without a side label column soaking up width, a wide page left prose and
+	   job entries stranded in a narrow strip with a large dead margin on the
+	   right. Sized to the content instead of the viewport. */
+	--page: 50rem;
 	/* `ch` is the width of "0", which runs well ahead of average lowercase, so
 	   these land near 70 rendered characters rather than the number of ch units. */
 	--measure: 54ch;
@@ -41,7 +44,7 @@
 	/* Caps a section's body column so a right-aligned element (a job's date)
 	   sits close to the text it pairs with, instead of stranded at the far
 	   edge of a wide grid track. */
-	--content-col: 46rem;
+	--content-col: 40rem;
 
 	--step-name: clamp(2.25rem, 1.4rem + 3.6vw, 3rem);
 	--step-headline: clamp(1.125rem, 1rem + 0.6vw, 1.375rem);
