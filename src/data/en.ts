@@ -15,7 +15,7 @@ export const en: Resume = {
 	location: 'Faro, Algarve, Portugal',
 	availability: 'Available for part-time or contract work (20 h/week, WET/CET hours). Open to full-time.',
 	summary:
-		"Senior software engineer with 6+ years of full-stack TypeScript (Node/NestJS, React). I've used AI at work since GitHub Copilot came out. Since February 2026 most of my implementation is done by AI agents: I write the specs and project docs they work from, keep the design and the critical code for myself, and review every change before merge for security, hexagonal (ports and adapters) boundaries and SOLID.",
+		"Senior software engineer with 6+ years of full-stack TypeScript (Node/NestJS, React). I've used AI at work since GitHub Copilot came out. Since February 2026 most of my implementation is done by AI agents: I write the specs and project docs they work from, keep the design and the critical code for myself, and review every change before merge for security, hexagonal boundaries and SOLID.",
 	contact: [
 		{ kind: 'email', label: 'Email', text: 'alefrank.m@gmail.com', href: 'mailto:alefrank.m@gmail.com' },
 		{ kind: 'phone', label: 'WhatsApp', text: '+351 936 404 829', href: 'https://wa.me/351936404829' },
@@ -33,7 +33,7 @@ export const en: Resume = {
 			company: 'Stack IT',
 			start: '2023',
 			current: true,
-			summary: 'I lead a team of 4 on 4 client projects, and every one of those clients has extended its contract. Since February 2026 I have been moving the team to spec-driven development with AI agents.',
+			summary: 'I lead a team of 4 across 4 client projects, and all 4 have renewed. Since February 2026 I have been moving the team to spec-driven development with AI agents.',
 			highlights: [
 				'Set up what the agents need: codebase specs, AGENTS.md and CLAUDE.md files, and agent workflows the team reuses.',
 				'AI agents now do about 90% of the mechanical implementation. I do the design, the critical code and the final review.',
@@ -94,7 +94,7 @@ export const en: Resume = {
 		{ label: 'Mobile', items: ['React Native', 'Kotlin'] },
 		{ label: 'Data', items: ['PostgreSQL', 'MySQL', 'MongoDB'] },
 		{ label: 'Cloud and DevOps', items: ['AWS', 'DigitalOcean', 'Terraform', 'Docker'] },
-		{ label: 'Architecture and practice', items: ['Hexagonal (ports and adapters)', 'SOLID', 'Secure coding', 'Scrum', 'Git/GitHub'] },
+		{ label: 'Architecture and practice', items: ['Hexagonal architecture', 'SOLID', 'Secure coding', 'Scrum', 'Git/GitHub'] },
 	],
 	education: [
 		{ title: 'Systems Engineering', institution: 'National Experimental University of the Armed Forces (UNEFA)' },

@@ -16,7 +16,7 @@ export const es: Resume = {
 	availability:
 		'Disponible para jornada parcial o colaboración por contrato (20 h/semana, horario WET/CET). Abierto a jornada completa.',
 	summary:
-		'Ingeniero de software sénior con más de 6 años en full-stack TypeScript (Node/NestJS, React). Uso IA en el trabajo desde que salió GitHub Copilot. Desde febrero de 2026, la mayor parte de la implementación la hacen agentes de IA: yo escribo las especificaciones y la documentación con las que trabajan, me quedo con el diseño y el código crítico, y reviso cada cambio antes del merge en seguridad, límites de la arquitectura hexagonal (puertos y adaptadores) y SOLID.',
+		'Ingeniero de software sénior con más de 6 años en full-stack TypeScript (Node/NestJS, React). Uso IA en el trabajo desde que salió GitHub Copilot. Desde febrero de 2026, la mayor parte de la implementación la hacen agentes de IA: yo escribo las especificaciones y la documentación con las que trabajan, me quedo con el diseño y el código crítico, y reviso cada cambio antes del merge en seguridad, límites de la arquitectura hexagonal y SOLID.',
 	contact: [
 		{ kind: 'email', label: 'Email', text: 'alefrank.m@gmail.com', href: 'mailto:alefrank.m@gmail.com' },
 		{ kind: 'phone', label: 'WhatsApp', text: '+351 936 404 829', href: 'https://wa.me/351936404829' },
@@ -35,7 +35,7 @@ export const es: Resume = {
 			start: '2023',
 			current: true,
 			summary:
-				'Lidero un equipo de 4 personas en 4 proyectos de cliente, y todos esos clientes han renovado su contrato. Desde febrero de 2026 estoy pasando al equipo a un desarrollo guiado por especificaciones con agentes de IA.',
+				'Lidero un equipo de 4 personas en 4 proyectos de cliente, y los 4 han renovado. Desde febrero de 2026 estoy pasando al equipo a un desarrollo guiado por especificaciones con agentes de IA.',
 			highlights: [
 				'Preparé lo que necesitan los agentes: specs del código, archivos AGENTS.md y CLAUDE.md, y flujos de agentes que el equipo reutiliza.',
 				'Los agentes de IA hacen ahora cerca del 90 % de la implementación mecánica. El diseño, el código crítico y la revisión final los hago yo.',
@@ -99,7 +99,7 @@ export const es: Resume = {
 		{ label: 'Móvil', items: ['React Native', 'Kotlin'] },
 		{ label: 'Datos', items: ['PostgreSQL', 'MySQL', 'MongoDB'] },
 		{ label: 'Cloud y DevOps', items: ['AWS', 'DigitalOcean', 'Terraform', 'Docker'] },
-		{ label: 'Arquitectura y práctica', items: ['Hexagonal (puertos y adaptadores)', 'SOLID', 'Código seguro', 'Scrum', 'Git/GitHub'] },
+		{ label: 'Arquitectura y práctica', items: ['Arquitectura hexagonal', 'SOLID', 'Código seguro', 'Scrum', 'Git/GitHub'] },
 	],
 	education: [
 		{
