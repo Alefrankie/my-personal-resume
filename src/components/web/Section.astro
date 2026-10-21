@@ -48,6 +48,7 @@ const { id, title } = Astro.props;
 	@media (min-width: 60rem) {
 		.section {
 			grid-template-columns: var(--label-col) minmax(0, 1fr);
+			column-gap: 1.5rem;
 		}
 
 		.section__label {
@@ -55,6 +56,18 @@ const { id, title } = Astro.props;
 			position: sticky;
 			top: 2rem;
 			align-self: start;
+		}
+
+		/* Right-aligned so every label sits flush against the gap, a fixed 1.5rem
+		   from the body column, instead of trailing off by however much shorter
+		   the word is than the fixed-width column. */
+		.section__title {
+			text-align: right;
+		}
+
+		.section__title::before {
+			left: auto;
+			right: 0;
 		}
 
 		.section__body {
