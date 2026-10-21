@@ -5,12 +5,12 @@ import type { Resume } from './types';
 export const es: Resume = {
 	locale: 'es',
 	meta: {
-		title: 'Alefrank J. Martínez | Senior Software Engineer, desarrollo asistido por IA',
+		title: 'Alefrank J. Martínez | Senior Software Engineer, lidero un equipo que desarrolla con agentes de IA',
 		description:
 			'Ingeniero full-stack sénior en TypeScript (Node/NestJS, React), en Portugal. Escribe las especificaciones con las que trabajan los agentes de IA y revisa el código que producen.',
 	},
 	name: 'Alefrank J. Martínez',
-	headline: 'Senior Software Engineer · Desarrollo asistido por IA',
+	headline: 'Senior Software Engineer · Lidero un equipo que desarrolla con agentes de IA',
 	tagline: 'Full-stack TypeScript · Node/NestJS · React · Arquitectura hexagonal',
 	location: 'Faro, Algarve, Portugal',
 	availability:
