@@ -50,11 +50,12 @@ export const pt: Resume = {
 			company: 'Maraveca Telecomunicaciones',
 			start: '2022',
 			highlights: [
-				'Desenhei e desenvolvi serviços de back end para um operador de telecomunicações.',
-				'Defini os contratos de API com a equipa de front end e implementei a integração.',
-				'Contribuí para o desenho da base de dados.',
+				'Substituí a paginação visual que carregava os cerca de 7.000 clientes antes de os mostrar (cerca de 5 minutos por carregamento) por paginação no servidor, eliminando essa espera.',
+				'Migrei as queries SQL em bruto, expostas a injeção, para Sequelize ORM em todo o back end, fechando essa lacuna de segurança.',
+				'Construí uma funcionalidade para os clientes de fibra ótica verem a velocidade da sua ligação em tempo real.',
+				'Defini os contratos de API com a equipa de front end e contribuí para o desenho da base de dados.',
 			],
-			stack: ['TypeScript', 'Angular', 'MySQL'],
+			stack: ['TypeScript', 'Angular', 'MySQL', 'Sequelize'],
 		},
 		{
 			role: 'Full-Stack Developer',
